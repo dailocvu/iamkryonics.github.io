@@ -1,0 +1,81 @@
+@font-face {
+  font-family: Atures;
+  src: url(assets/fonts/4da3a91c8c48b16b82e2545a6f421bdd.ttf);
+}
+
+body {
+  background-color: #333;
+  display: block;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100vw;
+}
+
+.btn-wrapper {
+  align-items: flex-end;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  position: absolute;
+  width: 100vw;
+}
+
+.btn {
+  background-color: transparent;
+  border: 1px solid #fff;
+  cursor: pointer;
+  font-family: Atures;
+  font-size: 1.5em;
+  height: 50px;
+  margin-bottom: 2em;
+  transition: all 0.3s ease 0s;
+  width: 200px;
+  z-index: 99;
+}
+
+.btn a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn:hover {
+  border: solid 1px transparent;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0)
+    ),
+    linear-gradient(101deg, #78e4ff, #ff48fa);
+  background-origin: border-box;
+}
+
+@media screen and (max-width: 400px) {
+  .btn {
+    font-size: 1em;
+    margin-bottom: 1em;
+    width: 120px;
+    height: 35px;
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 800px) {
+  .btn {
+    font-size: 1.2em;
+    margin-bottom: 1.2em;
+    width: 150px;
+    height: 40px;
+  }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+  .btn {
+    font-size: 1.4em;
+    margin-bottom: 1.4em;
+    width: 180px;
+    height: 45px;
+  }
+}
+
+
+/*# sourceMappingURL=main.css.map*/
