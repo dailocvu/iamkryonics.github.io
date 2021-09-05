@@ -33,6 +33,8 @@ body {
   transition: all 0.3s ease 0s;
   width: 200px;
   z-index: 99;
+  animation: appearBtn 0.5s ease-in 5s forwards; /*name - duration - timing - delay - fillmode */
+  opacity: 0;
 }
 
 .btn a {
@@ -74,6 +76,12 @@ body {
     margin-bottom: 1.4em;
     width: 180px;
     height: 45px;
+  }
+}
+
+@keyframes appearBtn {
+  to {
+    opacity: 1;
   }
 }
 
