@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Hi! I'm kryonics</title>
   </head>
   <body class="galaxy">
@@ -11,7 +18,28 @@
         <button class="btn">
           <a href="https://kryonics.me/about">ABOUT ME</a>
         </button>
+        <btn class="btn btn-music">
+          <audio autoplay loop>
+            <source src="./music/backgroundmusic.mp3" type="audio/mpeg" />
+          </audio>
+          <i class="fas fa-volume-up"></i>
+        </btn>
       </div>
     </div>
+    <!-- Audio Script-->
+    <script>
+      const on_off = document.querySelector(".btn-music");
+      const audio = document.querySelector(".btn-music audio");
+      const audiologo = document.querySelector(".btn-music i");
+
+      on_off.onclick = () => {
+        audio.paused ? audio.play() : audio.pause();
+        if (audio.paused) {
+          audiologo.className = "fas fa-volume-mute";
+        } else if (audio.played) {
+          audiologo.className = "fas fa-volume-up";
+        }
+      };
+    </script>
   </body>
 </html>

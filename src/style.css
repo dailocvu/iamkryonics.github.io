@@ -2,6 +2,9 @@
   font-family: Atures;
   src: url("./fonts/Atures500PersonalUseOnly-GD6D.ttf");
 }
+* {
+  box-sizing: border-box;
+}
 
 body {
   background-color: #333;
@@ -35,6 +38,16 @@ body {
   z-index: 99;
   animation: appearBtn 0.5s ease-in 5s forwards; /*name - duration - timing - delay - fillmode */
   opacity: 0;
+  color: #fff;
+}
+
+.btn-music {
+  width: 50px;
+  margin-left: 0.5em;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn a {
@@ -52,12 +65,19 @@ body {
   background-origin: border-box;
 }
 
+.audio-wrapper {
+  justify-content: flex-end;
+}
+
 @media screen and (max-width: 400px) {
   .btn {
     font-size: 1em;
     margin-bottom: 1em;
     width: 120px;
     height: 35px;
+  }
+  .btn-music {
+    width: 35px;
   }
 }
 
@@ -68,6 +88,9 @@ body {
     width: 150px;
     height: 40px;
   }
+  .btn-music {
+    width: 40px;
+  }
 }
 
 @media screen and (min-width: 800px) and (max-width: 1200px) {
@@ -77,10 +100,17 @@ body {
     width: 180px;
     height: 45px;
   }
+  .btn-music {
+    width: 45px;
+  }
 }
 
 @keyframes appearBtn {
   to {
     opacity: 1;
   }
+}
+
+.audio-wrapper {
+  position: absolute;
 }

@@ -1,9 +1,7 @@
 import "./style.css";
 import * as THREE from "three";
 //load 3D object
-// import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-// //Compressing and decompressing 3D meshes
-// import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 //SET UP ENVIROMENT
 const nearDist = 0.1;
@@ -32,11 +30,28 @@ if (sizes.width > 1600) {
   camera.position.z = 800;
 } else if (sizes.width > 600) {
   camera.position.z = 1000;
-}else if (sizes.width > 400) {
+} else if (sizes.width > 400) {
   camera.position.z = 1400;
 } else {
   camera.position.z = 1600;
 }
+
+/**
+ * Lights
+ */
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+directionalLight.castShadow = true;
+directionalLight.shadow.mapSize.set(1024, 1024);
+directionalLight.shadow.camera.far = 15;
+directionalLight.shadow.camera.left = -7;
+directionalLight.shadow.camera.top = 7;
+directionalLight.shadow.camera.right = 7;
+directionalLight.shadow.camera.bottom = -7;
+directionalLight.position.set(-5, 5, 0);
+scene.add(directionalLight);
 
 //Renderer
 const renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -65,6 +80,28 @@ window.addEventListener("resize", () => {
 const dist = farDist / 3;
 const distDouble = dist * 2;
 const tau = 2 * Math.PI;
+
+//CREATE THE ASTRONAUTS :>
+const customLoader = new GLTFLoader();
+const customGroup = new THREE.Group();
+for (let i = 0; i < 30; i++) {
+  customLoader.load("/models/Astronaut/scene.gltf", (gltf) => {
+    const customMesh = gltf.scene;
+    customMesh.position.x = Math.random() * distDouble - dist;
+    customMesh.position.y = Math.random() * distDouble - dist;
+    customMesh.position.z = Math.random() * distDouble - dist;
+    customMesh.rotation.x = Math.random() * tau;
+    customMesh.rotation.y = Math.random() * tau;
+    customMesh.rotation.z = Math.random() * tau;
+    customMesh.scale.set(100, 100, 100);
+
+    customMesh.matrixAutoUpdate = false;
+    customMesh.updateMatrix();
+
+    customGroup.add(customMesh);
+  });
+}
+scene.add(customGroup);
 
 // CREATE CUBE
 const cubeSize = 100;
@@ -112,7 +149,7 @@ scene.add(donutGroup);
 
 //CREATE PARTICLE
 const particlesGeometry = new THREE.BufferGeometry();
-const count = 5000;
+const count = 3000;
 const positions = new Float32Array(count * 3);
 
 for (let i = 0; i < count * 3; i++) {
@@ -186,6 +223,20 @@ const createTypo2 = (font) => {
 
 loader2.load("/fonts/Atures.json", createTypo2);
 
+//ASTRONAUT CENTER
+const astroGroup = new THREE.Group();
+customLoader.load("/models/Astronaut/scene.gltf", (gltf) => {
+  const customMesh = gltf.scene;
+  customMesh.position.x = cubeSize * 0;
+  customMesh.position.y = cubeSize * -3;
+  customMesh.position.z = cubeSize * -0.5;
+  customMesh.scale.set(100, 100, 100);
+  // customMesh.rotation.y = cubeSize;
+
+  astroGroup.add(customMesh);
+});
+scene.add(astroGroup);
+
 // MOUSE EFFECT
 let mouseX = 0;
 let mouseY = 0;
@@ -234,9 +285,21 @@ const render = () => {
   donutGroup.rotation.y = ry;
   donutGroup.rotation.z = rz;
 
+  //CUSTOM GROUP
+  customGroup.rotation.x = rx;
+  customGroup.rotation.y = ry;
+  customGroup.rotation.z = rz;
+
+  //TEXT
   textMesh.rotation.x = rx;
   textMesh2.rotation.x = rx;
 
+  astroGroup.rotation.x = rx;
+  astroGroup.rotation.y = ry;
+  // astroGroup.rotation.z = rz;
+  // astroGroup.position.x = rx;
+  // astroGroup.position.y = rx;
+  // astroGroup.position.z = rz;
   renderer.render(scene, camera);
 };
 render();
