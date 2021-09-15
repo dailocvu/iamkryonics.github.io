@@ -2,6 +2,7 @@ import "./style.css";
 import * as THREE from "three";
 //load 3D object
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 
 //SET UP ENVIROMENT
 const nearDist = 0.1;
@@ -82,9 +83,14 @@ const distDouble = dist * 2;
 const tau = 2 * Math.PI;
 
 //CREATE THE ASTRONAUTS :>
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath("/draco/");
+
 const customLoader = new GLTFLoader();
+customLoader.setDRACOLoader(dracoLoader);
+
 const customGroup = new THREE.Group();
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < 25; i++) {
   customLoader.load("/models/Astronaut/scene.gltf", (gltf) => {
     const customMesh = gltf.scene;
     customMesh.position.x = Math.random() * distDouble - dist;
