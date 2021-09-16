@@ -33,11 +33,7 @@ body {
   color: #fff;
   cursor: pointer;
   font-family: Atures;
-  font-size: 1.5em;
-  height: 50px;
-  margin-bottom: 2em;
   opacity: 0;
-  width: 200px;
   z-index: 99;
   background-image: linear-gradient(101deg, #78e4ff, #ff48fa);
   background-origin: border-box;
@@ -129,23 +125,7 @@ body {
   }
 }
 
-@media screen and (max-width: 400px) {
-  .btn {
-    font-size: 1rem;
-    margin-bottom: 3rem;
-    width: 120px;
-    height: 35px;
-  }
-  .btn-music {
-    width: 35px;
-  }
-
-  .content {
-    font-size: 0.75rem;
-  }
-}
-
-@media screen and (min-width: 400px) and (max-width: 800px) {
+@media screen and (max-width: 640px) {
   .btn {
     font-size: 1.2rem;
     margin-bottom: 3rem;
@@ -161,15 +141,46 @@ body {
   }
 }
 
-@media screen and (min-width: 800px) and (max-width: 1200px) {
+@media screen and (min-width: 640px) {
   .btn {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     margin-bottom: 3rem;
-    width: 180px;
+    width: 160px;
     height: 45px;
   }
   .btn-music {
     width: 45px;
+  }
+
+  .content {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .btn {
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    width: 180px;
+    height: 50px;
+  }
+  .btn-music {
+    width: 50px;
+  }
+  .content {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .btn {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    width: 200px;
+    height: 50px;
+  }
+  .btn-music {
+    width: 50px;
   }
   .content {
     font-size: 1rem;
