@@ -16,7 +16,8 @@ body {
   width: 100vw;
 }
 
-.btn-wrapper {
+.btn-wrapper,
+.now-playing {
   align-items: flex-end;
   display: flex;
   height: 100vh;
@@ -26,19 +27,43 @@ body {
 }
 
 .btn {
-  background-color: transparent;
-  border: 1px solid #fff;
+  animation: appearBtn 0.5s ease-in 5s forwards; /*name - duration - timing - delay - fillmode */
+  border-radius: 5px;
+  border: solid 1px transparent;
+  color: #fff;
   cursor: pointer;
   font-family: Atures;
   font-size: 1.5em;
   height: 50px;
   margin-bottom: 2em;
-  transition: all 0.3s ease 0s;
+  opacity: 0;
   width: 200px;
   z-index: 99;
-  animation: appearBtn 0.5s ease-in 5s forwards; /*name - duration - timing - delay - fillmode */
+  background-image: linear-gradient(101deg, #78e4ff, #ff48fa);
+  background-origin: border-box;
+  transition: background-image 0.5s linear;
+  position: relative;
+}
+
+.btn::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(101deg, #ff48fa, #78e4ff);
+  background-origin: border-box;
+  z-index: -1;
+  transition: opacity 0.8s ease-in-out;
   opacity: 0;
-  color: #fff;
+  border-radius: 5px;
+  border: solid 1px transparent;
+  transform: scale(1.015, 1.03);
+}
+
+.btn:hover::before {
+  opacity: 1;
 }
 
 .btn-music {
@@ -55,54 +80,38 @@ body {
   text-decoration: none;
 }
 
-.btn:hover {
-  border: solid 1px transparent;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0)
-    ),
-    linear-gradient(101deg, #78e4ff, #ff48fa);
-  background-origin: border-box;
-}
-
 .audio-wrapper {
   justify-content: flex-end;
 }
 
-@media screen and (max-width: 400px) {
-  .btn {
-    font-size: 1em;
-    margin-bottom: 1em;
-    width: 120px;
-    height: 35px;
-  }
-  .btn-music {
-    width: 35px;
-  }
+.audio-wrapper {
+  position: absolute;
 }
 
-@media screen and (min-width: 400px) and (max-width: 800px) {
-  .btn {
-    font-size: 1.2em;
-    margin-bottom: 1.2em;
-    width: 150px;
-    height: 40px;
-  }
-  .btn-music {
-    width: 40px;
-  }
+.content-wrapper {
+  width: 262px;
+  height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  margin-bottom: 1rem;
 }
 
-@media screen and (min-width: 800px) and (max-width: 1200px) {
-  .btn {
-    font-size: 1.4em;
-    margin-bottom: 1.4em;
-    width: 180px;
-    height: 45px;
-  }
-  .btn-music {
-    width: 45px;
-  }
+.content {
+  position: absolute;
+  display: inline-block;
+  font-family: Atures;
+  opacity: 0;
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: 0.2rem;
+  text-align: center;
+  transform: translateX(100%);
+  animation: scroll 15s linear infinite, appearBtn 0.5s ease-in 5s forwards;
+  background-image: linear-gradient(101deg, #ff48fa, #78e4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
 }
 
 @keyframes appearBtn {
@@ -111,8 +120,60 @@ body {
   }
 }
 
-.audio-wrapper {
-  position: absolute;
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .btn {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+    width: 120px;
+    height: 35px;
+  }
+  .btn-music {
+    width: 35px;
+  }
+
+  .content {
+    font-size: 0.75rem;
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 800px) {
+  .btn {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    width: 150px;
+    height: 40px;
+  }
+  .btn-music {
+    width: 40px;
+  }
+
+  .content {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+  .btn {
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    width: 180px;
+    height: 45px;
+  }
+  .btn-music {
+    width: 45px;
+  }
+  .content {
+    font-size: 1rem;
+  }
 }
 
 
