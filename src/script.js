@@ -2,7 +2,7 @@ import "./style.css";
 import * as THREE from "three";
 //load 3D object
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
+// import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 
 //SET UP ENVIROMENT
 const nearDist = 0.1;
@@ -83,31 +83,61 @@ const distDouble = dist * 2;
 const tau = 2 * Math.PI;
 
 //CREATE THE ASTRONAUTS :>
-const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath("/draco/");
+// const dracoLoader = new DRACOLoader();
+// dracoLoader.setDecoderPath("/draco/");
 
 const customLoader = new GLTFLoader();
-customLoader.setDRACOLoader(dracoLoader);
+// customLoader.setDRACOLoader(dracoLoader);
 
 const customGroup = new THREE.Group();
-for (let i = 0; i < 25; i++) {
-  customLoader.load("/models/Astronaut/scene.gltf", (gltf) => {
-    const customMesh = gltf.scene;
-    customMesh.position.x = Math.random() * distDouble - dist;
-    customMesh.position.y = Math.random() * distDouble - dist;
-    customMesh.position.z = Math.random() * distDouble - dist;
-    customMesh.rotation.x = Math.random() * tau;
-    customMesh.rotation.y = Math.random() * tau;
-    customMesh.rotation.z = Math.random() * tau;
-    customMesh.scale.set(100, 100, 100);
+//ASTRONAUT CENTER
+const astroGroup = new THREE.Group();
 
-    customMesh.matrixAutoUpdate = false;
-    customMesh.updateMatrix();
+customLoader.load("/models/Astronaut/scene.gltf", (gltf) => {
+  const customMesh = gltf.scene;
 
-    customGroup.add(customMesh);
-  });
-}
+  //Astronaut random
+  for (let i = 0; i < 30; i++) {
+    let copy = customMesh.clone();
+    copy.position.x = Math.random() * distDouble - dist;
+    copy.position.y = Math.random() * distDouble - dist;
+    copy.position.z = Math.random() * distDouble - dist;
+    copy.rotation.x = Math.random() * tau;
+    copy.rotation.y = Math.random() * tau;
+    copy.rotation.z = Math.random() * tau;
+    copy.scale.set(100, 100, 100);
+
+    copy.matrixAutoUpdate = false;
+    copy.updateMatrix();
+
+    customGroup.add(copy);
+  }
+  //Astronaut center
+  let copyCenter = customMesh.clone();
+  copyCenter.position.x = cubeSize * 0;
+  copyCenter.position.y = cubeSize * -3;
+  copyCenter.position.z = cubeSize * -0.5;
+  copyCenter.scale.set(100, 100, 100);
+  // copyCenter.rotation.y = cubeSize;
+
+  astroGroup.add(copyCenter);
+});
 scene.add(customGroup);
+scene.add(astroGroup);
+
+//ASTRONAUT CENTER
+// const astroGroup = new THREE.Group();
+// customLoader.load("/models/Astronaut/scene.gltf", (gltf) => {
+//   const customMesh = gltf.scene;
+//   customMesh.position.x = cubeSize * 0;
+//   customMesh.position.y = cubeSize * -3;
+//   customMesh.position.z = cubeSize * -0.5;
+//   customMesh.scale.set(100, 100, 100);
+//   // customMesh.rotation.y = cubeSize;
+
+//   astroGroup.add(customMesh);
+// });
+// scene.add(astroGroup);
 
 // CREATE CUBE
 const cubeSize = 100;
@@ -228,20 +258,6 @@ const createTypo2 = (font) => {
 };
 
 loader2.load("/fonts/Atures.json", createTypo2);
-
-//ASTRONAUT CENTER
-const astroGroup = new THREE.Group();
-customLoader.load("/models/Astronaut/scene.gltf", (gltf) => {
-  const customMesh = gltf.scene;
-  customMesh.position.x = cubeSize * 0;
-  customMesh.position.y = cubeSize * -3;
-  customMesh.position.z = cubeSize * -0.5;
-  customMesh.scale.set(100, 100, 100);
-  // customMesh.rotation.y = cubeSize;
-
-  astroGroup.add(customMesh);
-});
-scene.add(astroGroup);
 
 // MOUSE EFFECT
 let mouseX = 0;
