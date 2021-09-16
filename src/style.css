@@ -107,7 +107,7 @@ body {
   letter-spacing: 0.2rem;
   text-align: center;
   transform: translateX(100%);
-  animation: scroll 15s linear infinite, appearBtn 0.5s ease-in 5s forwards;
+  animation: scroll 12s linear infinite, appearBtn 0.5s ease-in 0s forwards;
   background-image: linear-gradient(101deg, #ff48fa, #78e4ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

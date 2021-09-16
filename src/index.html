@@ -15,12 +15,6 @@
   </head>
   <body class="galaxy">
     <div id="canvas-wrapper">
-      <iframe
-        src="./music/silence.mp3"
-        allow="autoplay"
-        id="audio"
-        style="display: none"
-      ></iframe>
       <div class="now-playing">
         <div class="content-wrapper">
           <span class="content">
@@ -44,16 +38,20 @@
     <script>
       const on_off = document.querySelector(".btn-music");
       const audio = document.querySelector(".btn-music audio");
-      const audiologo = document.querySelector(".btn-music i");
-     
-      audio.play();
+      const audioLogo = document.querySelector(".btn-music i");
+      const audioText = document.querySelector(".content-wrapper");
+
+      audio.pause();
+      audioLogo.className = "fas fa-volume-mute";
+      audioText.style.display = "none";
 
       on_off.onclick = () => {
         audio.paused ? audio.play() : audio.pause();
         if (audio.paused) {
-          audiologo.className = "fas fa-volume-mute";
+          audioLogo.className = "fas fa-volume-mute";
         } else if (audio.played) {
-          audiologo.className = "fas fa-volume-up";
+          audioLogo.className = "fas fa-volume-up";
+          audioText.style.display = "block";
         }
       };
     </script>
