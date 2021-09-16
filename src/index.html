@@ -39,6 +39,8 @@
       const on_off = document.querySelector(".btn-music");
       const audio = document.querySelector(".btn-music audio");
       const audiologo = document.querySelector(".btn-music i");
+      //  
+      audio.play();
 
       on_off.onclick = () => {
         audio.paused ? audio.play() : audio.pause();
