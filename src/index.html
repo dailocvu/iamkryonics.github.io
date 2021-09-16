@@ -15,6 +15,12 @@
   </head>
   <body class="galaxy">
     <div id="canvas-wrapper">
+      <iframe
+        src="./music/silence.mp3"
+        allow="autoplay"
+        id="audio"
+        style="display: none"
+      ></iframe>
       <div class="now-playing">
         <div class="content-wrapper">
           <span class="content">
@@ -39,7 +45,7 @@
       const on_off = document.querySelector(".btn-music");
       const audio = document.querySelector(".btn-music audio");
       const audiologo = document.querySelector(".btn-music i");
-      //  
+     
       audio.play();
 
       on_off.onclick = () => {
