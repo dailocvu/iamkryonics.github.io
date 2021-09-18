@@ -208,7 +208,7 @@ const material = new THREE.MeshNormalMaterial();
 const loader = new THREE.FontLoader();
 const textMesh = new THREE.Mesh();
 const createTypo = (font) => {
-  const word = "kryonics";
+  const word = "creative";
   const typoProperties = {
     font: font,
     size: cubeSize * 1.2,
