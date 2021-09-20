@@ -5,7 +5,7 @@
 - Build with Three.JS and styling with CSS. 
 - You can visit the link above to see my portfolio.
 
-Inspired by ilithya project on codepen.io [Link](https://codepen.io/ilithya/pen/KKPejPK). 
+Inspired by ilithya's project on codepen.io [Link](https://codepen.io/ilithya/pen/KKPejPK). 
 
 Version 20210920
 
